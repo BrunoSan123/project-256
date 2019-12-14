@@ -26,7 +26,9 @@ if($userIsSet && $passwdIsSet){
 	$SENHA=md5($_POST['senha']);
 
 	$sql = "SELECT * FROM loginSiteDirack WHERE usuario='".$USUARIO."' AND senha='".$SENHA."'";
-	$sql = $pdo->query($sql) or die('Erro na query de index.php');
+	//$sql = $pdo->query($sql) or die('Erro na query de index.php');
+	$insert =$pdo->prepare($sql);
+	$insert->execute();
 
 	if($sql->rowCount() == 1){
 

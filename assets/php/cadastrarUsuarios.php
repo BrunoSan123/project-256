@@ -65,9 +65,13 @@ if(!empty($_POST['usuario']) && isset($_POST['usuario'])){
 	
 	//query substituido por prepare, e valores passados dentro do INSERT,substituido por array no execute
 	
-	$sql = "INSERT INTO loginSiteDirack(usuario,senha,fotoPerfil,email) VALUES(?,?,?,?)";
+	$sqli ='SELECT FROM loginSiteDirack WHERE email = "$EMAIL"';
+	$result =$pdo->query($sqli);
+	$result->fetchAll(PDO:: FETCH_ASSOC);
+	
 	 
-	if($USUARIO || $EMAIL == 0){
+	if($result == 0){
+	$sql = "INSERT INTO loginSiteDirack(usuario,senha,fotoPerfil,email) VALUES(?,?,?,?)";
 	$sql = $pdo->prepare($sql);
 	$sql->execute(array($USUARIO,$SENHA,$FOTO,$EMAIL));
 	echo  'Cadastrado com sucesso'

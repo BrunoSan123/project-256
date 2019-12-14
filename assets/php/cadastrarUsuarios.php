@@ -65,13 +65,15 @@ if(!empty($_POST['usuario']) && isset($_POST['usuario'])){
 	
 	//query substituido por prepare, e valores passados dentro do INSERT,substituido por array no execute
 	
-	if($USUARIO || $EMAIL == 0){
 	$sql = "INSERT INTO loginSiteDirack(usuario,senha,fotoPerfil,email) VALUES(?,?,?,?)";
-	$sql = $pdo->prepare($sql); 
-	$sql->execute(array($USUARIO,$SENHA,$FOTO,$EMAIL))
+	 
+	if($USUARIO || $EMAIL == 0){
+	$sql = $pdo->prepare($sql);
+	$sql->execute(array($USUARIO,$SENHA,$FOTO,$EMAIL));
+	echo  'Cadastrado com sucesso'
 	or die('Erro ao cadastrar usuário. Contate o administrador da página');
-
-	}else{
+	
+		}else{
 
 		echo "Conta já cadastrada,favor fazer login";
 

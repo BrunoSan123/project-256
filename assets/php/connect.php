@@ -8,16 +8,15 @@
 */
 
 //variaveis de  conexão adicionadas
-$host ='localhost';
-$db='dbase';	
-$user ='user';
-$pass='pswd';
+
+require 'config.php';
+
 
 
 			//////////// Conexão com banco de dados //////////////////
 			try{
 
-				$pdo= new PDO("mysql:dbname=$db;host=$host",$user,$pass);
+				$pdo= new PDO("mysql:dbname=DB_NAME;host=DB_HOST",DB_USER,DB_PASSWORD);
 
 				//Configurar a conexão para utf8
 				$pdo->query("SET NAMES 'utf8'");
